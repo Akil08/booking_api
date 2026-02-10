@@ -124,7 +124,10 @@ public class DailyJobService
                 CancelledByDoctor = false
             });
         }
-  
+     
+        // so its remove previous record ? 
+        // yes
+
         _db.PrioritySubscribers.RemoveRange(queue);
         await _db.SaveChangesAsync();
         await tx.CommitAsync();
