@@ -14,6 +14,20 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// how to use hangfire ?
+// Hangfire is a library for scheduling and executing background jobs in .NET applications.
+// To use Hangfire, you need to configure it in your application, 
+// set up a storage mechanism (like a database), 
+// and then define the jobs you want to run in the background.
+// i mean here in this code how do i use it ?
+// In this code, Hangfire is configured to use PostgreSQL as its storage mechanism.
+// The line `builder.Services.AddHangfire(config => config.UsePostgreSqlStorage(...))
+// sets up Hangfire to store its data in a PostgreSQL database specified by the connection string "HangfireConnection".
+// The line `builder.Services.AddHangfireServer()` adds the Hangfire server to the application, which will process the background jobs.
+// Later in the code, a recurring job is defined 
+// using `RecurringJob.AddOrUpdate<DailyJobService>("daily-reset", service => service.RunDailyResetAsync(), "0 3 * * *")`,
+// which schedules the `RunDailyResetAsync` method of the `DailyJobService` to run every day at 3 AM.
+
 builder.Services.AddHangfire(config =>
     config.UsePostgreSqlStorage(builder.Configuration.GetConnectionString("HangfireConnection")));
 builder.Services.AddHangfireServer();

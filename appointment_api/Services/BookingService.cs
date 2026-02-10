@@ -222,6 +222,10 @@ public class BookingService
     // it creates one with default values (10 max slots, 0 booked, not cancelled). 
     // This helps prevent errors when trying to book or cancel appointments on a day
     //  that hasn't been initialized in the database.
+
+
+    // does this fun is impoted from ohter file or its just a helper fun in this service ?
+    // This function is a helper method within the BookingService class.
     private async Task EnsureTodayAsync()
     {
         var today = DateOnly.FromDateTime(DateTime.UtcNow);

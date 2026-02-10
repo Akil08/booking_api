@@ -12,7 +12,22 @@ public class DailyJobService
     {
         _db = db;
     }
+ 
+    // who uses this fun ? 
+    // This function is intended to be called by a scheduled job (like a cron job) that runs once a day,
+    // typically at midnight. It resets the daily state of the system by clearing out old bookings
+    // and preparing for new bookings for the day. It ensures that the system starts each day with a clean slate,
+    // allowing patients to book appointments for the new day and ensuring that any unfulfilled bookings from
+    // the previous day are cancelled and handled appropriately. 
 
+    //  i mean how does it get called ?
+    //  i used hangfire , so what i can see is from program.cs only rundailyreset async it called 
+    // not ensuretoday async so how does it get called ?
+    // booking service has its own ensuretoday async method which is called at the beginning of booking and 
+    // cancellation operations to make sure that there is a DayState for today.
+    // so why we need ensuretoday async in this service if we have it in booking service ?
+    // The EnsureTodayAsync method in the DailyJobService is specifically designed to be called by
+    // the scheduled job that runs daily to reset the state of the system.
     public async Task EnsureTodayAsync()
     {
         var today = DateOnly.FromDateTime(DateTime.UtcNow);
@@ -32,7 +47,17 @@ public class DailyJobService
     }
 
     public async Task RunDailyResetAsync()
-    {
+    {   
+        // do this fun called ensure today async ?
+        // No, the RunDailyResetAsync method does not call EnsureTodayAsync.
+        // then why ensuretoday async is in this service if it is not called by any fun in this service ?
+        // The EnsureTodayAsync method is included in the DailyJobService to provide a way to
+        // ensure that there is a DayState for the current day, which is necessary for the booking system to function correctly.
+        // bookigb serviec has its own ensuretoday async, i think we can 
+        // remove it from here . rihgt ? 
+        // We can remove the EnsureTodayAsync method from the DailyJobService if it is not being called by any other method in that service.
+        // However, if there is a possibility that it might be needed in the future for other
+
         var today = DateOnly.FromDateTime(DateTime.UtcNow);
 
         using var tx = await _db.Database.BeginTransactionAsync();
@@ -99,7 +124,7 @@ public class DailyJobService
                 CancelledByDoctor = false
             });
         }
-
+  
         _db.PrioritySubscribers.RemoveRange(queue);
         await _db.SaveChangesAsync();
         await tx.CommitAsync();
