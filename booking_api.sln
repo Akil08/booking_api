@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "appointment_api", "appointment_api\appointment_api.csproj", "{5D6F397A-67D3-46A3-99DC-ED5C8D7AA4CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D6F397A-67D3-46A3-99DC-ED5C8D7AA4CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6F397A-67D3-46A3-99DC-ED5C8D7AA4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6F397A-67D3-46A3-99DC-ED5C8D7AA4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6F397A-67D3-46A3-99DC-ED5C8D7AA4CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9D54F0D9-BE3F-43F2-8871-E25E48393A9B}
+	EndGlobalSection
+EndGlobal
