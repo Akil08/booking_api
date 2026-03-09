@@ -14,10 +14,12 @@ public class BookingService
     }
 
     public async Task<OperationResult> BookAsync(int patientId)
-    {
+    {   
+        
+
         await EnsureTodayAsync();
         var today = DateOnly.FromDateTime(DateTime.UtcNow);
-
+       
         using var tx = await _db.Database.BeginTransactionAsync();
 
         var alreadyBooked = await _db.Bookings.AnyAsync(b => b.PatientId == patientId && b.Date == today && b.Status == BookingStatus.Booked);
