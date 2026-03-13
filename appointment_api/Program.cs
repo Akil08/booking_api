@@ -59,7 +59,7 @@ app.UseAuthorization();
 app.MapControllers();
 app.UseHangfireDashboard(app.Configuration["Hangfire:DashboardPath"] ?? "/hangfire");
 
-RecurringJob.AddOrUpdate<DailyJobService>("daily-reset", 
-service => service.RunDailyResetAsync(), "0 3 * * *");
+// RecurringJob.AddOrUpdate<DailyJobService>("daily-reset", 
+// service => service.RunDailyResetAsync(), "0 3 * * *");
 
 app.Run();

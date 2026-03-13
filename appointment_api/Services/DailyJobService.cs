@@ -102,5 +102,6 @@ public class DailyJobService
         _db.PrioritySubscribers.RemoveRange(queue);
         await _db.SaveChangesAsync();
         await tx.CommitAsync();
-    }
+
+        }
 }
