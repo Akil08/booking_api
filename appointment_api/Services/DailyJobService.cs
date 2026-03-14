@@ -12,6 +12,7 @@ public class DailyJobService
     {
         _db = db;
     }
+
     public async Task EnsureTodayAsync()
     {
         var today = DateOnly.FromDateTime(DateTime.UtcNow);
@@ -31,7 +32,7 @@ public class DailyJobService
     }
 
     public async Task RunDailyResetAsync()
-    {   
+    {
         var today = DateOnly.FromDateTime(DateTime.UtcNow);
 
         using var tx = await _db.Database.BeginTransactionAsync();
@@ -72,7 +73,11 @@ public class DailyJobService
 
         foreach (var sub in queue)
         {
-            var alreadyBooked = await _db.Bookings.AnyAsync(b => b.PatientId == sub.PatientId && b.Date == today && b.Status == BookingStatus.Booked);
+            var alreadyBooked = await _db.Bookings.AnyAsync(b => 
+                b.PatientId == sub.PatientId && 
+                b.Date == today && 
+                b.Status == BookingStatus.Booked);
+            
             if (alreadyBooked)
             {
                 continue;
@@ -102,6 +107,5 @@ public class DailyJobService
         _db.PrioritySubscribers.RemoveRange(queue);
         await _db.SaveChangesAsync();
         await tx.CommitAsync();
-
-        }
+    }
 }
