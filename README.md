@@ -31,6 +31,24 @@ A .NET 10 Web API for doctor appointment booking with JWT authentication, concur
 
 ---
 
+## What I Learned
+
+- How race conditions occur under concurrent booking requests and how to solve them using atomic database updates — and   understanding which concurrency strategy fits which situation
+- How to use Hangfire for scheduling recurring background jobs, including separating its connection string and triggering jobs manually for testing
+
+
+## AI Tools Used
+
+- Used Claude as a pair programmer throughout — planning features, deciding project structure, and figuring out the implementation approach
+- Pair-programmed the core application logic collaboratively
+- Used it to write unit tests and set up the GitHub Actions CI/CD pipeline
+
+
+## What I'd Improve
+
+- Replace mock email notifications with real email delivery (e.g., SendGrid or SMTP)
+- Add idempotency keys on booking endpoints to prevent duplicate bookings from retried or double-fired requests
+
 ## Technologies Used
 
 - .NET 10 ASP.NET Core Web API
@@ -326,7 +344,3 @@ booking_api/
 
 ---
 
-## License
-// what the hell is MIT License ? 
-// if u know please tell me .
-MIT License - Feel free to use for learning and portfolio purposes.

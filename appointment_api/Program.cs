@@ -25,6 +25,9 @@ builder.Services.AddScoped<BookingService>();
 builder.Services.AddScoped<DailyJobService>();
 
 // Register Hangfire Job Registrar (fixes the stack overflow issue)
+
+
+
 builder.Services.AddHostedService<HangfireJobRegistrar>();
 
 // JWT Authentication
